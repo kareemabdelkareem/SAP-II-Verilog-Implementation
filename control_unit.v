@@ -107,14 +107,155 @@ module control_unit (
 	
 	// Write your Code here :
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	always @(state,opcode,nCLR) begin
+
+        if(!nCLR) begin
+            // Reset all the Control Signal
+			CON <= 0 ;
+        end
+        else begin
+            // Running Mode (Active)
+            case (state)
+			
+                T01: begin
+					// Ouput the PC, pull data from memory and store in IR.
+					CON <= 0 ;
+                end
+                  
+                T02: begin
+                    // Clear previous signals
+					CON <= 0 ;
+                end
+				
+				T03: begin
+                    // Clear previous signals
+					CON <= 0 ;
+                end
+				
+                T04: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+                
+				T05: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+                T06: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T07: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T08: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T09: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T10: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T11: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T12: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T13: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T14: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T15: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T16: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T17: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+				T18: begin
+                    // the Control Signals Differs depending on opcode
+                    case(opcode)
+						
+						default: ;
+                    endcase
+                end
+				
+                default: ;
+            endcase
+        end
+    end
 	
 endmodule
 /***************************************************************************/
