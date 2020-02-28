@@ -10,7 +10,7 @@
 * Output :
 * WBUS    = Data to WBUS
 */
-module input_port_1 (
+module input_port_2 (
 					output [7:0] WBUS,
 					input        ready,
 					input        serial_in );
