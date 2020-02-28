@@ -112,8 +112,14 @@ module control_unit (
             // Reset all the Control Signal
 			CON <= 0 ;
         end
+		
         else begin
-            // Running Mode (Active)
+            /*
+			* One Way to Change the Control Signals (Suggested)
+			* Depending on each Opcode (which has Number of T-state) we Change the Control Signals Vector (CON)
+			* NOTE : in the Last T-state for every Opcode it's Obligated to Reset the Ring Counter to state : T01 ,
+			* to start the Next Instruction without Halting the Program till the Ring Counter Complets it's Cycle
+			*/
 			case (opcode)
 				ADD_B : case (state) // 1- ADD_B
 				
