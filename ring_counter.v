@@ -1,14 +1,16 @@
-/**
- * Ring counter
- * Generates the T-States for the Control Unit (Controller)
- *
- * Input :
- * CLK   = Clock
- * nCLR  = Clear (0 :clear)
- *
- * Output :
- * stste = T-States for the Control Unit
- */
+/*
+* Ring counter
+* Generates the T-States for the Control Unit (Controller)
+*
+* Author's Name : Hesham Mohamed Adb El-Hamed Ali
+*
+* Input :
+* CLK   = Clock
+* nCLR  = Clear (0 :clear)
+*
+* Output :
+* stste = T-States for the Control Unit
+*/
 module ring_counter (
 						output reg [17:0] state,
 						input             CLK,
