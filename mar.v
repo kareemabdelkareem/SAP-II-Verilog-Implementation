@@ -23,18 +23,12 @@ module mar (
     reg [15:0] addr ;
 
     initial begin
-		addr <= Zero_State;
+		address <= Zero_State;
     end
-    
-	// Write your Code here :
-	
-	
-	
-	
-	
-	
-	
-	
+    always @(posedge CLK) begin 
+		if(!nLm)	address <= WBUS;
+		else		address <= address;
+	end	
 endmodule
 /*************************************** Test Bench ***************************************/
 module t_mar;
@@ -52,9 +46,10 @@ module t_mar;
 	end
 
 	initial begin 
-		
-		// Write your Test Cases here :
-		
+			nLm = 1;	WBUS = 16'h1234;
+	#100	nLm = 0;	WBUS = 16'h1234;
+	#100	nLm = 0;	WBUS = 16'h1111;	
+	#100	nLm = 1;	WBUS = 16'h1234;	
 		
 	end
 
