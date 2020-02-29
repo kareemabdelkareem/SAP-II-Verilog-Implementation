@@ -21,11 +21,11 @@ module b_register (
 	parameter High_Impedance = 8'bzzzz_zzzz;
 	parameter Zero_State     = 8'b0000_0000;
 	
-    reg [7:0] breg;
+	reg [7:0] breg;
   
-    initial begin
-        breg <= Zero_State;
-    end
+	initial begin
+		breg <= Zero_State;
+	end
 	
 	// nLb : for Load to B Register
 	// Eb  : Enable to out to WBUS
