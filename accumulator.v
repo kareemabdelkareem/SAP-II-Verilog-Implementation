@@ -6,58 +6,69 @@
 * Therefore, the 8-bit word in the accumulator continuously drives the ALU, but this same word appears on the bus only when EA is active. 
 *
 * Input :
-* out    = Data from WBUS
+* WBUS   = Data from WBUS
 * CLK    = Clock
 * nLa    = Load Register A at negedge (Write). 0 -> Write
 * Ea     = Write to WBUS.
 *
 * Output :
-* out    = Data To the WBUS
+* WBUS   = Data To the WBUS
 * alu    = Data to ALU
 */
 module accumulator(
-					inout  [7:0] out,
-					output [7:0] alu,
-					input        CLK,
-					input        nLa,
-					input        Ea );
+			inout  [7:0] WBUS,
+			output [7:0] alu,
+			input        CLK,
+			input        nLa,
+			input        Ea );
 
 	parameter High_Impedance = 8'bzzzz_zzzz;
 	parameter Zero_State     = 8'b0000_0000;
 	
-    reg  [7:0] accreg;
+	reg  [7:0] accreg;
     
-    initial begin
-        accreg <= Zero_State;
-    end	
+	initial begin
+		accreg <= Zero_State;
+	end	
 	
-	// Write your Code here :
+	assign WBUS = (Ea)? accreg : High_Impedance ;  // if Enabe == 1 -> Out to WBUS
+
+	assign alu  = accreg ;
+
+	always @(posedge CLK ) begin
 	
-	
-	
-	
-	
+		if(!nLa) accreg <= WBUS ;   // Load Data to Register
+		
+		else     accreg <= accreg ; // Do Nothing
+		
+	end
 	
 endmodule
 /*************************************** Test Bench ***************************************/
 module t_accumulator ;
 
-	wire [7:0] out;
+	wire [7:0] WBUS;
 	wire [7:0] alu;
 	reg        CLK;
 	reg        nLa,Ea ;
+	reg  [7:0] in ;
 
-	accumulator Accumulator (out,alu,CLK,nLa,Ea);
+	accumulator Accumulator (WBUS,alu,CLK,nLa,Ea);
+
+	assign WBUS = (!nLa)? in : 8'bzzzz_zzzz ;
 
 	initial begin 
-		CLK = 0 ;
+		CLK = 1 ;
 		forever #50 CLK = ~CLK ;
 	end
 
 	initial begin 
 	
-		// Write your Test Cases here :
-	
+		      nLa = 1;  Ea = 0;  in = 8'b0000_0000;  // Clear (Reset)
+		#100  nLa = 0;  Ea = 0;  in = 8'b0000_1010;  // Load with (10)
+		#100  nLa = 1;  Ea = 0;                      // WBUS High_Impedance
+		#100  nLa = 0;  Ea = 0;  in = 8'b0010_0000;  // Load with (32)
+		#100  nLa = 1;  Ea = 1;                      // Out Data to WBUS
 
 	end
 
